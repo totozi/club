@@ -26,8 +26,8 @@ public class ClubMember extends BaseEntity{
 
     private boolean fromSocial;
 
-    @ElementCollection(fetch = FetchType.LAZY)
-    @Builder.Default
+    @ElementCollection(fetch = FetchType.LAZY) // 지연로딩 LAZY를 사용해서 프록시로 조회하는 방법
+    @Builder.Default // 기본값 설정을 위한 어노테이션
     private Set<ClubMemberRole> roleSet = new HashSet<>();
 
     public void addMemberRole(ClubMemberRole clubMemberRole) {

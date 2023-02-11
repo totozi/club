@@ -1,4 +1,4 @@
-package org.zerock.club.dto;
+package org.zerock.club.security.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,7 +19,8 @@ public class NoteDTO {
 
     private String content;
 
-    private String writerEmail;
+    private String writerEmail; // 연관 관계 없이
 
     private LocalDateTime regDate, modDate;
+
 }

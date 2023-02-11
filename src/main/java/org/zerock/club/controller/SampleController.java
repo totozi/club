@@ -1,5 +1,6 @@
 package org.zerock.club.controller;
 
+
 import lombok.extern.log4j.Log4j2;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -10,38 +11,39 @@ import org.zerock.club.security.dto.ClubAuthMemberDTO;
 
 @Controller
 @Log4j2
-@RequestMapping("/sample")
+@RequestMapping("/sample/")
 public class SampleController {
 
-    @PreAuthorize("permitAll()")
     @GetMapping("/all")
-    public void exAll() {
-        log.info("exAll........");
+    public void exAll(){
+        log.info("exAll..........");
     }
 
-    @GetMapping("/member")
-    public void exMember(@AuthenticationPrincipal ClubAuthMemberDTO clubAuthmember) {
-        log.info("exMember........");
-
-        log.info("-----------------------------------");
-        log.info(clubAuthmember);
-
-    }
-
+//    @GetMapping("/member")
+//    public void exMember(){
+//        log.info("exMember..........");
+//    }
 
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/admin")
-    public void exAdmin() {
-        log.info("exAdmin........");
+    public void exAdmin(){
+        log.info("exAdmin..........");
     }
 
-    @PreAuthorize("#clubAuthMember != null && #clubAuthMember.username eq \"skgydnjs@gmail.com\"")
-    @GetMapping("/exOnly")
-    public String exMemberOnly(@AuthenticationPrincipal ClubAuthMemberDTO clubAuthMemberDTO) {
-        log.info("exMemberOnly..............");
+    @GetMapping("/member")
+    public void exMember(){
+
+        log.info("exMember..........");
+
+    }
+
+    @PreAuthorize("#clubAuthMemberDTO != null && #clubAuthMemberDTO.username eq \"skgydnjs@gmail.com\"")
+    @GetMapping("exOnly")
+    public void exMemberOnly(@AuthenticationPrincipal ClubAuthMemberDTO clubAuthMemberDTO)
+    {
+        log.info("exOnly..........");
         log.info(clubAuthMemberDTO);
 
-        return "/sample/admin";
-
     }
+
 }
